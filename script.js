@@ -9,7 +9,7 @@
     document.body.appendChild(proof);
 
     // Make proof box disappear after 5 seconds so it's not in the way
-    setTimeout(() => { proof.style.display = 'none'; }, 5000);
+    setTimeout(() => { proof.style.display = 'none'; }, 50000);
 
     // 2. THE MEME SCANNER: Converts links to images
     function scanChat() {
