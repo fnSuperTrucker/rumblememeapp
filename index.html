@@ -1,24 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Rumble Memer</title>
-    <style>
-        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
-        #app-container { height: 100vh; width: 100vw; }
-    </style>
-</head>
-<body>
-    <div id="app-container">
-        <script>
-            window.location.href = "https://rumble.com";
+    <title>Rumble Memer Loading...</title>
+    <script>
+        // This code runs, then immediately jumps to Rumble
+        // It carries your script along with it
+        window.onload = function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/gh/fnSuperTrucker/rumblememeapp@main/script.js';
+            document.head.appendChild(script);
             
-            // This is the bridge that loads your meme script
-            const s = document.createElement('script');
-            s.src = 'https://cdn.jsdelivr.net/gh/fnSuperTrucker/rumblememeapp@main/script.js';
-            document.head.appendChild(s);
-        </script>
-    </div>
+            // Redirect to Rumble after a tiny delay to let the script attach
+            setTimeout(function() {
+                window.location.href = "https://rumble.com";
+            }, 100);
+        };
+    </script>
+</head>
+<body style="background:#000; color:#fff; text-align:center; padding-top:20%;">
+    Loading Rumble Memer...
 </body>
 </html>
