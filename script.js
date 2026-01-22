@@ -1,29 +1,30 @@
 (function() {
-    console.log("Rumble Memer 1.7: INJECTED");
+    console.log("Script Alive");
 
-    // 1. THE PROOF: Create a box that sits on top of Rumble
-    const proof = document.createElement('div');
-    proof.id = 'java-proof-box';
-    proof.innerHTML = 'JAVA RUNNING';
-    proof.style = "position:fixed; top:20px; left:50%; transform:translateX(-50%); background:lime; color:black; font-weight:bold; padding:15px 30px; border:3px solid white; z-index:999999; border-radius:10px; font-family:sans-serif; box-shadow:0 5px 15px rgba(0,0,0,0.5);";
-    document.body.appendChild(proof);
+    function createProof() {
+        if (!document.getElementById('java-proof-box')) {
+            const box = document.createElement('div');
+            box.id = 'java-proof-box';
+            box.innerHTML = 'JAVA RUNNING';
+            box.style = "position:fixed; top:10px; left:10px; background:red; color:white; font-weight:bold; padding:10px; z-index:999999; border:2px solid white;";
+            document.body.appendChild(box);
+        }
+    }
 
-    // Make proof box disappear after 5 seconds so it's not in the way
-    setTimeout(() => { proof.style.display = 'none'; }, 50000);
-
-    // 2. THE MEME SCANNER: Converts links to images
-    function scanChat() {
-        const links = document.querySelectorAll('.chat-history--message-text a:not(.processed), .chat-item--text a:not(.processed)');
+    // Runs the proof and the meme scanner
+    setInterval(() => {
+        createProof();
+        
+        // Meme scanner
+        const links = document.querySelectorAll('a:not(.processed)');
         links.forEach(link => {
-            const url = link.href.toLowerCase();
-            if (url.match(/\.(jpeg|jpg|gif|png|webp)$/) != null) {
+            if (link.href.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
                 link.classList.add('processed');
                 const img = document.createElement('img');
                 img.src = link.href;
-                img.style = "display:block; max-width:250px; border-radius:10px; margin-top:5px; border:1px solid #444;";
+                img.style = "display:block; max-width:200px; border:1px solid lime;";
                 link.after(img);
             }
         });
-    }
-    setInterval(scanChat, 1000);
+    }, 1000);
 })();
