@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
     <title>Rumble Memer</title>
-    <style>body,html,iframe{margin:0;padding:0;height:100%;width:100%;overflow:hidden;background:#000;}</style>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100vh; background: #000; color: lime; display: flex; align-items: center; justify-content: center; font-family: sans-serif; }
+        #status { border: 5px solid lime; padding: 20px; font-size: 24px; font-weight: bold; text-align: center; }
+    </style>
 </head>
 <body>
-    <script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
-    <script type="module" src="https://unpkg.com/x-frame-bypass"></script>
-    
-    <iframe is="x-frame-bypass" src="https://rumble.com" style="border:none;width:100%;height:100%;"></iframe>
+
+    <div id="status">JAVA RUNNING...<br><span style="font-size:14px; color:white;">Loading Rumble</span></div>
 
     <script>
-        // FORCED REFRESH: Tells the APK to grab fresh code from GitHub every time
+        // 1. PROOF IT WORKS: Keep the box visible for 2 seconds
+        console.log("JAVA STARTING");
+
+        // 2. THE CACHE BUSTER: Forces the APK to ignore old saved files
+        const bust = Date.now();
+        
+        // 3. THE JUMP: We move the WHOLE app to Rumble. 
+        // This stops the CORS error because we are no longer "inside" an iframe.
+        setTimeout(() => {
+            window.location.href = "https://rumble.com";
+        }, 2000);
+
+        // 4. INJECT THE BRAIN:
+        // We attach your script.js to the window so it carries over
         const s = document.createElement('script');
-        s.src = 'https://cdn.jsdelivr.net/gh/fnSuperTrucker/rumblememeapp@main/script.js?v=' + Date.now();
-        document.body.appendChild(s);
+        s.src = 'https://cdn.jsdelivr.net/gh/fnSuperTrucker/rumblememeapp@main/script.js?v=' + bust;
+        document.head.appendChild(s);
     </script>
 </body>
 </html>
